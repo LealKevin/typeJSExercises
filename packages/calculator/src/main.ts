@@ -1,5 +1,6 @@
 let numA: Array<string> = [];
-let numB = [];
+let numB: Array<string> = [];
+let operation: string = '';
 let result = 0;
 
 function clickToArray(btn: HTMLButtonElement) {
@@ -9,17 +10,31 @@ function clickToArray(btn: HTMLButtonElement) {
 }
 
 function cleanNumber(num: Array<string>) {
-  return num.join('');
+  let numberJoint = num.join('');
+  let result = parseFloat(numberJoint);
+  console.log(result);
 }
 
 function sum(numA: number, numB: number) {
-  return numA + numB;
+  let sumResult: number = numA + numB;
+  let operationName = 'sum';
+  return { result: sumResult, operation: operationName };
 }
 
-let btn = document.querySelectorAll('#btn');
+let buttons = document.querySelectorAll("[id^='btn']");
 
-btn.forEach((item) =>
-  item.addEventListener('click', (btn2: Event) =>
-    clickToArray(btn2.target as HTMLButtonElement)
-  )
+buttons.forEach((button) =>
+  button.addEventListener('click', (event: Event) => {
+    clickToArray(event.target as HTMLButtonElement);
+    console.log(event);
+  })
 );
+
+// Not working
+// let btnDot = document.querySelector('#btnDot');
+// btnDot.addEventListener('click', () => numA.push('.'));
+
+let btnEqual = document.querySelector('#btnEqual');
+btnEqual.addEventListener('click', () => cleanNumber(numA));
+
+// function equalOperation{num1, num2, operation}

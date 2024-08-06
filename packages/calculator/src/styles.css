@@ -34,6 +34,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    border-style: none;
 }
 
 .greyBtn{
@@ -55,6 +56,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    border-style: none;
 }
 
 .rows{
@@ -78,5 +80,6 @@ body{
     font-family: 'Roboto';
     font-size: 40px;
     color: #3E3E3E;
+    pointer-events: none;
 
 }
