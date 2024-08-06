@@ -1,1 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #2A2A2A;
+}
+
+.calculatorBody{
+    width: 300px;
+    height: 450px;
+    background-color: #3F3F3F;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container{
+    margin: 8px;
+}
+
+.display{
+    width: 280px;
+    height: 64px;
+    background-color: #3E3E3E;
+    margin: 4px;
+}
+
+.btnBase{
+    width: 64px;
+    height: 64px;
+    background-color: #D9D9D9;
+    margin: 4px;
+}
+
+.greyBtn{
+    background-color: #919191;
+}
+
+.redBtn{
+    background-color: #FF7E7E;
+}
+
+.btnEqual{
+    width: 208px;
+    height: 64px;
+    background-color: #FFDB7E;
+    margin: 4px;
+}
+
+.rows{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.roundedCorner{
+    border-radius: 20px;
+}
+
+.dropShadow{
+    filter: drop-shadow(0 0 5px rgb(0, 0, 0));
+}
+
+.innerShadow{
+    box-shadow: inset rgb(0, 0, 0) 0px 0px 30px -12px; 
+}
+
