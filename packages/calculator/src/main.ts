@@ -4,9 +4,18 @@ let numB: number = 0;
 let operation: string = '';
 let result = 0;
 
+const display = document.querySelector('#display');
+display.textContent = '';
+
+function numToScreen(numCurrent) {
+  let numCleanDisplay = numCurrent.join('');
+  display.textContent = numCleanDisplay;
+}
+
 function clickToArray(btn: HTMLButtonElement) {
   let value = btn.value;
   numCurrent.push(value);
+  numToScreen(numCurrent);
   console.log(numCurrent);
 }
 
@@ -17,6 +26,7 @@ function cleanNumber(num: Array<string>) {
 }
 
 function sum(numA: number, numB: number) {
+  display.textContent = '';
   let sumResult: number = numA + numB;
 
   return sumResult;
@@ -47,6 +57,6 @@ function equalOperation() {
   numB = cleanNumber(numCurrent);
   if (operation === 'sum') {
     let result = sum(numA, numB);
-    console.log(result);
+    display.textContent = result.toString();
   }
 }
