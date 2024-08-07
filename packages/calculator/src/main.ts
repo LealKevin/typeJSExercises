@@ -3,6 +3,7 @@ let numA: number = 0;
 let numB: number = 0;
 let operation: string = '';
 let result = 0;
+let dotPressed = 0;
 
 const display = document.querySelector('#display');
 display.textContent = '';
@@ -34,6 +35,14 @@ function numberToArray(num: Number) {
 }
 
 //Check if the '.' is already present
+let btnDot = document.querySelector('#dotBtn');
+btnDot.addEventListener('click', (event) => {
+  while (dotPressed === 0) {
+    clickToArray(event.target as HTMLButtonElement);
+    dotPressed = 1;
+  }
+  dotPressed = 1;
+});
 
 // Function that make the sum
 function sum(numA: number, numB: number) {
@@ -77,6 +86,7 @@ let btnSum = document.querySelector('#btnSum');
 btnSum.addEventListener('click', () => {
   numA = cleanNumber(numCurrent);
   numCurrent.length = 0;
+  dotPressed = 0;
   operation = 'sum';
   console.log(numA, numB, numCurrent);
 });
@@ -86,6 +96,7 @@ let butSub = document.querySelector('#btnSub');
 butSub.addEventListener('click', () => {
   numA = cleanNumber(numCurrent);
   numCurrent.length = 0;
+  dotPressed = 0;
   operation = 'sub';
   console.log(numA, numB, numCurrent);
 });
@@ -95,6 +106,7 @@ let btnDiv = document.querySelector('#btnDiv');
 btnDiv.addEventListener('click', () => {
   numA = cleanNumber(numCurrent);
   numCurrent.length = 0;
+  dotPressed = 0;
   operation = 'division';
   console.log(numA, numB, numCurrent);
 });
@@ -103,13 +115,27 @@ btnDiv.addEventListener('click', () => {
 let btnMultiplication = document.querySelector('#btnMult');
 btnMultiplication.addEventListener('click', () => {
   numA = cleanNumber(numCurrent);
+  dotPressed = 0;
   numCurrent.length = 0;
   operation = 'multiplication';
+});
+
+// Toogle positive / negative
+let btnMinusPlus = document.querySelector('#minusPlusBtn');
+btnMinusPlus.addEventListener('click', () => {
+  if (numCurrent[0] === '-') {
+    numCurrent.shift();
+    numToScreen(numCurrent);
+  } else {
+    numCurrent.unshift('-');
+    numToScreen(numCurrent);
+  }
 });
 
 // Function when equal is pressed
 function equalOperation() {
   numB = cleanNumber(numCurrent);
+  dotPressed = 0;
   if (operation === 'sum') {
     let result = sum(numA, numB);
     display.textContent = result.toString();
@@ -149,5 +175,6 @@ function cleanHistory() {
   numA = 0;
   numB = 0;
   operation = '';
+  dotPressed = 0;
   display.textContent = '';
 }
