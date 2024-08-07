@@ -20,6 +20,9 @@ body{
 }
 
 .display{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     width: 280px;
     height: 64px;
     background-color: #3E3E3E;
@@ -81,5 +84,9 @@ body{
     font-size: 40px;
     color: #3E3E3E;
     pointer-events: none;
+}
 
+.displayText{
+    color: #FFFFFF;
+    margin-right: 10px;
 }

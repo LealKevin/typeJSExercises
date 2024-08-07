@@ -16,7 +16,6 @@ function clickToArray(btn: HTMLButtonElement) {
   let value = btn.value;
   numCurrent.push(value);
   numToScreen(numCurrent);
-  console.log(numCurrent);
 }
 
 function cleanNumber(num: Array<string>) {
@@ -28,7 +27,6 @@ function cleanNumber(num: Array<string>) {
 function sum(numA: number, numB: number) {
   display.textContent = '';
   let sumResult: number = numA + numB;
-
   return sumResult;
 }
 
@@ -47,7 +45,6 @@ btnEqual.addEventListener('click', equalOperation);
 let btnSum = document.querySelector('#btnSum');
 btnSum.addEventListener('click', () => {
   numA = cleanNumber(numCurrent);
-
   numCurrent.length = 0;
   operation = 'sum';
   console.log(numA);
@@ -59,4 +56,15 @@ function equalOperation() {
     let result = sum(numA, numB);
     display.textContent = result.toString();
   }
+}
+
+let btnAC = document.querySelector('#btnAC');
+btnAC.addEventListener('click', cleanHistory);
+
+function cleanHistory() {
+  numCurrent.length = 0;
+  numA = 0;
+  numB = 0;
+  operation = '';
+  display.textContent = '';
 }
