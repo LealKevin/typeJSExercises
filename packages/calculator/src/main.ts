@@ -27,10 +27,13 @@ function cleanNumber(num: Array<string>) {
   return result;
 }
 
+// Convert number to array of strings
 function numberToArray(num: Number) {
   let result = String(num).split('').map(String);
   return result;
 }
+
+//Check if the '.' is already present
 
 // Function that make the sum
 function sum(numA: number, numB: number) {
@@ -45,9 +48,16 @@ function substracion(numA: number, numB: number) {
   return numA - numB;
 }
 
+// Function that make the division
 function division(numA: number, numB: number) {
   display.textContent = '';
   return numA / numB;
+}
+
+// Function that make the multiplication
+function multiplication(numA: number, numB: number) {
+  display.textContent = '';
+  return numA * numB;
 }
 
 // Gives the buttons an addEventListener to run clickToArray() on each click
@@ -58,9 +68,11 @@ buttons.forEach((button) =>
   })
 );
 
+// Button Equal
 let btnEqual = document.querySelector('#btnEqual');
 btnEqual.addEventListener('click', equalOperation);
 
+// Button Sum
 let btnSum = document.querySelector('#btnSum');
 btnSum.addEventListener('click', () => {
   numA = cleanNumber(numCurrent);
@@ -69,20 +81,33 @@ btnSum.addEventListener('click', () => {
   console.log(numA, numB, numCurrent);
 });
 
+// Button Substraction
 let butSub = document.querySelector('#btnSub');
 butSub.addEventListener('click', () => {
   numA = cleanNumber(numCurrent);
   numCurrent.length = 0;
   operation = 'sub';
+  console.log(numA, numB, numCurrent);
 });
 
+// Button Division
 let btnDiv = document.querySelector('#btnDiv');
 btnDiv.addEventListener('click', () => {
   numA = cleanNumber(numCurrent);
   numCurrent.length = 0;
   operation = 'division';
+  console.log(numA, numB, numCurrent);
 });
 
+// Button Multiplication
+let btnMultiplication = document.querySelector('#btnMult');
+btnMultiplication.addEventListener('click', () => {
+  numA = cleanNumber(numCurrent);
+  numCurrent.length = 0;
+  operation = 'multiplication';
+});
+
+// Function when equal is pressed
 function equalOperation() {
   numB = cleanNumber(numCurrent);
   if (operation === 'sum') {
@@ -95,12 +120,27 @@ function equalOperation() {
   } else if (operation === 'sub') {
     let result = substracion(numA, numB);
     display.textContent = result.toString();
+    numB = 0;
+    numA = 0;
+    numCurrent = numberToArray(result);
+    return result;
   } else if (operation === 'division') {
     let result = division(numA, numB);
     display.textContent = result.toString();
+    numB = 0;
+    numA = 0;
+    numCurrent = numberToArray(result);
+    return result;
+  } else if (operation === 'multiplication') {
+    let result = multiplication(numA, numB);
+    display.textContent = result.toString();
+    numB = 0;
+    numA = 0;
+    numCurrent = numberToArray(result);
   }
 }
 
+// Button AC, empty all data stored on variables
 let btnAC = document.querySelector('#btnAC');
 btnAC.addEventListener('click', cleanHistory);
 
