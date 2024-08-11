@@ -40,6 +40,19 @@ body{
     border-style: none;
 }
 
+.btnHover:hover{
+    background-color: #c1c1c1;
+}
+
+.btnSpecial:hover{
+    background-color: #6f6f6f;
+
+}
+
+.btnACHover:hover{
+    background-color: #da6868;
+}
+
 .greyBtn{
     background-color: #919191;
 }
@@ -60,6 +73,10 @@ body{
     justify-content: center;
     align-items: center;
     border-style: none;
+}
+
+.btnEqualHover:hover{
+    background-color: #dcbc6c;
 }
 
 .rows{

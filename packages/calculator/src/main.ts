@@ -9,7 +9,7 @@ const display = document.querySelector('#display');
 display.textContent = '';
 
 // Input on screen
-function numToScreen(numCurrent) {
+function numToScreen(numCurrent: Array<string>) {
   let numCleanDisplay = numCurrent.join('');
   display.textContent = numCleanDisplay;
 }
@@ -60,6 +60,9 @@ function substracion(numA: number, numB: number) {
 // Function that make the division
 function division(numA: number, numB: number) {
   display.textContent = '';
+  if (numB === 0 || numA === 0) {
+    display.textContent = 'Error';
+  }
   return numA / numB;
 }
 
@@ -82,8 +85,9 @@ let btnEqual = document.querySelector('#btnEqual');
 btnEqual.addEventListener('click', equalOperation);
 
 // Button Sum
-let btnSum = document.querySelector('#btnSum');
+let btnSum = document.querySelector<HTMLElement>('#btnSum');
 btnSum.addEventListener('click', () => {
+  btnSum.style.backgroundColor = '#e79315';
   numA = cleanNumber(numCurrent);
   numCurrent.length = 0;
   dotPressed = 0;
@@ -92,8 +96,9 @@ btnSum.addEventListener('click', () => {
 });
 
 // Button Substraction
-let butSub = document.querySelector('#btnSub');
-butSub.addEventListener('click', () => {
+let btnSub = document.querySelector<HTMLElement>('#btnSub');
+btnSub.addEventListener('click', () => {
+  btnSub.style.backgroundColor = '#e79315';
   numA = cleanNumber(numCurrent);
   numCurrent.length = 0;
   dotPressed = 0;
@@ -102,8 +107,9 @@ butSub.addEventListener('click', () => {
 });
 
 // Button Division
-let btnDiv = document.querySelector('#btnDiv');
+let btnDiv = document.querySelector<HTMLElement>('#btnDiv');
 btnDiv.addEventListener('click', () => {
+  btnDiv.style.backgroundColor = '#e79315';
   numA = cleanNumber(numCurrent);
   numCurrent.length = 0;
   dotPressed = 0;
@@ -112,8 +118,9 @@ btnDiv.addEventListener('click', () => {
 });
 
 // Button Multiplication
-let btnMultiplication = document.querySelector('#btnMult');
+let btnMultiplication = document.querySelector<HTMLElement>('#btnMult');
 btnMultiplication.addEventListener('click', () => {
+  btnMultiplication.style.backgroundColor = '#e79315';
   numA = cleanNumber(numCurrent);
   dotPressed = 0;
   numCurrent.length = 0;
@@ -132,34 +139,51 @@ btnMinusPlus.addEventListener('click', () => {
   }
 });
 
+//Check result length
+function checkResultLength(result: number) {
+  let resultConvert = result.toString();
+  if (resultConvert.length < 12) {
+    return resultConvert;
+  } else {
+    return result.toExponential(5).toString();
+  }
+}
+
 // Function when equal is pressed
 function equalOperation() {
   numB = cleanNumber(numCurrent);
   dotPressed = 0;
   if (operation === 'sum') {
+    btnSum.style.backgroundColor = '#919191';
     let result = sum(numA, numB);
-    display.textContent = result.toString();
+    display.textContent = checkResultLength(result);
     numB = 0;
     numA = 0;
     numCurrent = numberToArray(result);
     return result;
   } else if (operation === 'sub') {
+    btnSub.style.backgroundColor = '#919191';
     let result = substracion(numA, numB);
-    display.textContent = result.toString();
+    display.textContent = checkResultLength(result);
     numB = 0;
     numA = 0;
     numCurrent = numberToArray(result);
     return result;
   } else if (operation === 'division') {
+    btnDiv.style.backgroundColor = '#919191';
     let result = division(numA, numB);
-    display.textContent = result.toString();
+    if (result == Infinity) {
+      display.textContent = 'Error';
+    }
+    display.textContent = checkResultLength(result);
     numB = 0;
     numA = 0;
     numCurrent = numberToArray(result);
     return result;
   } else if (operation === 'multiplication') {
+    btnMultiplication.style.backgroundColor = '#919191';
     let result = multiplication(numA, numB);
-    display.textContent = result.toString();
+    display.textContent = checkResultLength(result);
     numB = 0;
     numA = 0;
     numCurrent = numberToArray(result);
