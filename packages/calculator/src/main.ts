@@ -154,6 +154,7 @@ function equalOperation() {
   numB = cleanNumber(numCurrent);
   dotPressed = 0;
   if (operation === 'sum') {
+    //Sum
     btnSum.style.backgroundColor = '#919191';
     let result = sum(numA, numB);
     display.textContent = checkResultLength(result);
@@ -162,6 +163,7 @@ function equalOperation() {
     numCurrent = numberToArray(result);
     return result;
   } else if (operation === 'sub') {
+    //SuB
     btnSub.style.backgroundColor = '#919191';
     let result = substracion(numA, numB);
     display.textContent = checkResultLength(result);
@@ -170,17 +172,20 @@ function equalOperation() {
     numCurrent = numberToArray(result);
     return result;
   } else if (operation === 'division') {
+    //Division
     btnDiv.style.backgroundColor = '#919191';
     let result = division(numA, numB);
-    if (result == Infinity) {
+    if (result === Infinity) {
       display.textContent = 'Error';
+    } else {
+      display.textContent = checkResultLength(result);
+      numB = 0;
+      numA = 0;
+      numCurrent = numberToArray(result);
+      return result;
     }
-    display.textContent = checkResultLength(result);
-    numB = 0;
-    numA = 0;
-    numCurrent = numberToArray(result);
-    return result;
   } else if (operation === 'multiplication') {
+    //Multiplication
     btnMultiplication.style.backgroundColor = '#919191';
     let result = multiplication(numA, numB);
     display.textContent = checkResultLength(result);
